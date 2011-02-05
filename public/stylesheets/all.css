@@ -15,11 +15,7 @@ body#rsvp {
 }
 
 #header {
-  font-family: Meddon, Garamond, serif;
-  font-size: 4em;
-  text-shadow: 0 1px 2px #aaa;
-  padding: 1em 0 0.5em;
-  background: #eee;
+  height: 100px;
   -webkit-border-top-left-radius: 3px;
   -webkit-border-top-right-radius: 3px;
   -moz-border-radius-topleft: 3px;
@@ -31,6 +27,30 @@ body#rsvp {
   background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #668EBA),color-stop(1, #445B74)); /* Saf4+, Chrome */
   background-image: linear-gradient(top, #668EBA, #445B74);
             filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#668EBA', EndColorStr='#445B74'); /* IE6–IE9 */
+}
+#header div {
+  float: left;
+}
+#header .rsvp {
+  font-weight: bold;
+  font-size: 3em;
+  height: 55px;
+  padding: 45px 20px 0;
+  color: #333;
+  text-shadow: 0 1px 0 #777;
+  background-image: -moz-linear-gradient(top, #577494, #303C48); /* FF3.6 */
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #577494),color-stop(1, #303C48)); /* Saf4+, Chrome */
+  background-image: linear-gradient(top, #577494, #303C48);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#577494', EndColorStr='#303C48'); /* IE6–IE9 */
+  -webkit-border-top-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  border-top-left-radius: 3px;
+}
+#header .hou {
+  font-family: Meddon, Garamond, serif;
+  font-size: 4em;
+  text-shadow: 0 1px 2px #777;
+  padding: 1em 0 0.5em 0.5em;
 }
 
 #main {
@@ -74,4 +94,8 @@ dl dd {
 }
 .columns.two .column.right {
   float: right;
+}
+
+td {
+  vertical-align: top;
 }
