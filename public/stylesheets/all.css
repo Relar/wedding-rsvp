@@ -1,7 +1,7 @@
 body#rsvp {
   margin: 2em auto;
-  background: #aaa;
   font-family: Sans, Helvetica, Arial, Verdana, sans-serif;
+  background: #ddd;
 }
 
 #wrapper {
@@ -11,6 +11,7 @@ body#rsvp {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+  -webkit-box-shadow: 0 3px 10px #aaa;
 }
 
 #header {
