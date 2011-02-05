@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  price: 1.5
+  is_adult: false
+
+two:
+  name: MyString
+  price: 1.5
+  is_adult: false

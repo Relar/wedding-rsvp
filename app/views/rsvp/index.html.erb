@@ -1,0 +1,15 @@
+<h1>RSVP</h1>
+
+<%= form_for :person do |f| %>
+<div class="input">
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+</div>
+<div class="input">
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+</div>
+<div class="submit">
+  <%= f.submit "Continue" %>
+</div>
+<% end %>

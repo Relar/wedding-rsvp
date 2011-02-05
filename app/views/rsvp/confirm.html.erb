@@ -1,0 +1,50 @@
+<h1>Confirmation</h1>
+
+<p>Please review your selection.</p>
+
+<div class="columns two clearfix">
+<div class="column left">
+<h2>Family</h2>
+
+<dl>
+  <dt>Phone</dt>
+  <dd><%= @family.phone %></dd>
+  <dt>Email</td>
+  <dd><%= @family.email %></dd>
+  <dt>Street address</dt>
+  <dd><%= @family.street_address.gsub("\n", "<br />").html_safe %></dd>
+  <% unless @family.rsvp_message.empty? %>
+    <dt>RSVP message</dt>
+    <dd><%= @family.rsvp_message %></dd>
+  <% end %>
+</dl>
+
+</div>
+
+<div class="column right clearfix">
+
+<% unless @family.members.where(:is_invited_ceremony => true).empty? %>
+<h2>Wedding ceremony</h2>
+<dl>
+  <% @family.members.where(:is_invited_ceremony => true).order(:is_attending_ceremony => "desc").each do |member| %>
+  <dt><%= member.name %></dt>
+  <dd><%= member.attending_ceremony? ? "Attending" : "Not attending" %></dd>
+  <% end %>
+</dl>
+<% end %>
+
+<h2>Reception</h2>
+<dl>
+  <% @family.members.each do |member| %>
+  <dt><%= member.name %></dt>
+    <dd><%= member.attending_reception? ? "Attending" : "Not attending" %></dd>
+    <% if member.attending_reception? %><dd>Meal: <%= member.meal.name %></dd><% end %>
+  </dt>
+  <% end %>
+</dl>
+
+</div>
+
+</div>
+
+<div class="submit"><%= button_to "Finished", :action => :finished %> or <%= link_to "make changes", :action => :details %></div>
