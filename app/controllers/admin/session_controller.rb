@@ -1,4 +1,7 @@
 class Admin::SessionController < ApplicationController
+
+  before_filter :require_user, :only => :index
+
   def login
     if params[:login]
       begin
