@@ -16,7 +16,7 @@
     <div class="rsvp">RSVP</div>
     <div class="hou">Hooked on Us</div>
   </div>
-  <% if current_person and !request.path.start_with? "/admin/" %>
+  <% if current_person and !request.path.start_with? "/admin" %>
     <div id="person_bar" class="bar">
       Hello, <%= current_person.name %>
     </div>
