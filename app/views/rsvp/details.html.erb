@@ -1,10 +1,6 @@
 <h1>RSVP Details</h1>
 
 <%= form_for @family, :url => request.path do |f| %>
-<div class="submit">
-  <%= f.submit "Save and continue" %>
-</div>
-
 <h2>Family details</h2>
 <p>Please ensure that we have correct and complete information for your family.</p>
 <div class="input">
@@ -33,20 +29,19 @@
 
 <h2>Reception</h2>
 <p>Please indicate which family members will be attending the reception, and what meal they will have.</p>
+  <dl>
   <%= f.fields_for :members, @family.members do |mf| %>
-    <div class="reception-member">
-      <div class="input attendance">
-        <%= mf.check_box :is_attending_reception %>
-        <%= mf.label :is_attending_reception, mf.object.name %>
-      </div>
-      <div class="input meal">
+    <dt><%= mf.check_box :is_attending_reception %> <%= mf.object.name %></dt>
+    <dd>
+      <div class="input meal select">
         <%= mf.label :meal_id, "Meal choice" %>
         <% if mf.object.adult? %>
           <%= mf.collection_select :meal_id, Meal.where(:is_adult => true), :id, :name, :prompt => true %>
         <% end %>
       </div>
-    </div>
+    </dd>
   <% end %>
+  </dl>
 
 <h2>Leave a message</h2>
 <p>If you have any additional comments or questions, leave a message here and we'll be in touch.</p>

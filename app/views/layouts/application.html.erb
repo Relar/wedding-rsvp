@@ -13,15 +13,13 @@
 
 <div id="wrapper">
   <div id="header">
-    <div class="rsvp">RSVP</div>
-    <div class="hou">Hooked on Us</div>
+    <div class="rsvp"><%= link_to "RSVP", :root %></div>
+    <div class="hou"><%= link_to "Hooked on Us", :root %></div>
   </div>
-  <% if current_person and !request.path.start_with? "/admin" %>
-    <div id="person_bar" class="bar">
-      Hello, <%= current_person.name %>
-    </div>
-  <% end %>
   <div id="main">
+    <% if current_person and !request.path.start_with? "/admin" %>
+    <div id="id"><%= current_person.name %></div>
+    <% end %>
     <%= show_flash %>
     <%= yield %>
   </div>
