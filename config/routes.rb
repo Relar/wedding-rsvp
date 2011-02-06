@@ -1,10 +1,13 @@
 WeddingRsvp::Application.routes.draw do
 
   namespace :admin do resources :meals do as_routes end end
-
   namespace :admin do resources :people do as_routes end end
-
   namespace :admin do resources :families do as_routes end end
+  namespace :admin do
+    root :to => "session#index"
+    match "login" => "session#login", :as => :login
+    match "logout" => "session#logout", :as => :logout
+  end
 
   root :to => "rsvp#index"
   match "rsvp/disclaimer"
@@ -12,9 +15,6 @@ WeddingRsvp::Application.routes.draw do
   match "rsvp/confirm"
   match "rsvp/finished"
 
-  #namespace :admin do
-    resources :family, :active_scaffold => true
-  #end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

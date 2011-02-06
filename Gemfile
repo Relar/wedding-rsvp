@@ -9,6 +9,8 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 
 gem 'active_scaffold_vho'
 gem 'awesome_print'
+gem 'authlogic'
+gem 'dynamic_form'
 
 # Use unicorn as the web server
 # gem 'unicorn'

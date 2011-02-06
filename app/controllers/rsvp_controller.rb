@@ -1,11 +1,12 @@
 class RsvpController < ApplicationController
 
-  before_filter :require_known_person, :except => [:index]
+  before_filter :require_person, :except => [:index]
 
   def index
+    session[:person_id] = nil
     @person = Person.new
     if request.post?
-      @person = Person.where(params[:person]).first
+      @person = Person.where(:is_adult => true).find(:first, :conditions => ["lower(first_name) = ? and lower(last_name) = ?", params[:person][:first_name].downcase, params[:person][:last_name].downcase])
       if @person.nil?
         flash[:notice] = "Sorry, you're not cool enough."
       else
@@ -16,6 +17,9 @@ class RsvpController < ApplicationController
   end
 
   def disclaimer
+    if current_person.family.members.delete_if { |member| !member.is_invited_ceremony }.empty?
+      redirect_to :action => :details
+    end
     if request.post?
       if params[:disclaimer][:agree] == "1"
         session[:disclaimer_agreed] = true
@@ -42,6 +46,7 @@ class RsvpController < ApplicationController
   end
 
   def finished
+    session[:person_id] = nil
   end
 
 end
