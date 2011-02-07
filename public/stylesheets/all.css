@@ -134,12 +134,25 @@ form.button_to, form.button_to > div {
 }
 .input.checkbox input, .input.select input {
   vertical-align: top;
+  width: auto;
 }
 .input input, .input textarea {
   padding: 0.5em;
   vertical-align: middle;
   font-size: 1.2em;
   font-family: Sans, Helvetica, Arial, Verdana, sans-serif;
+  background: url(../images/input-background.png) 0 0 no-repeat;
+  border: 1px #ccc solid;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+.input input:focus, .input textarea:focus {
+  -webkit-box-shadow: 0 0 5px #2B84CC;
+  -moz-box-shadow: 0 0 5px #2B84CC;
+  box-shadow: 0 0 5px #2B84CC;
+  border-color: #888;
+  outline: none;
 }
 .submit {
   margin: 1.5em 0 1em;
@@ -147,6 +160,24 @@ form.button_to, form.button_to > div {
 .submit input {
   font-size: 1.5em;
   cursor: pointer;
+  color: #eee;
+  padding: 0.3em 0.5em;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: #777 0 1px 3px;
+  -moz-box-shadow: #222 0 1px 3px;
+  box-shadow: #222 -1px 1px 3px;
+  text-shadow: 0 1px 2px #111;
+  border: 0;
+  text-decoration: none;
+  background: #2B9A07 url(../images/button-green.png) 0 0 repeat-x;
+}
+.submit input:hover {
+  background-position: 0 -40px;
+}
+.submit input:active {
+  background-position: 0 -80px;
 }
 
 dl dt {

@@ -26,7 +26,7 @@
 <% unless @family.members.where(:is_invited_ceremony => true).empty? %>
 <h2>Wedding ceremony</h2>
 <dl>
-  <% @family.members.where(:is_invited_ceremony => true).order(:is_attending_ceremony => "desc").each do |member| %>
+  <% @family.members.where(:is_invited_ceremony => true).order("is_attending_ceremony desc").each do |member| %>
   <dt><%= member.name %></dt>
   <dd><%= member.attending_ceremony? ? "Attending" : "Not attending" %></dd>
   <% end %>
