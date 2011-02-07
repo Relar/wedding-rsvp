@@ -106,7 +106,10 @@ h2 {
                   filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#cccccc', EndColorStr='#ffffff'); /* IE6–IE9 */
 }
 
-
+#main a:hover {
+  color: #555;
+  background: #eee;
+}
 
 .clearfix:before, .clearfix:after {  content: "\0020"; display: block; height: 0; visibility: hidden;    }
 .clearfix:after { clear: both; }
@@ -142,7 +145,7 @@ form.button_to, form.button_to > div {
   font-size: 1.2em;
   font-family: Sans, Helvetica, Arial, Verdana, sans-serif;
   background: url(../images/input-background.png) 0 0 no-repeat;
-  border: 1px #ccc solid;
+  border: 1px #aaa solid;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
@@ -155,23 +158,24 @@ form.button_to, form.button_to > div {
   outline: none;
 }
 .submit {
-  margin: 1.5em 0 1em;
+  margin: 1.5em 0.2em 1em;
 }
 .submit input {
-  font-size: 1.5em;
+  font-size: 20px;
   cursor: pointer;
-  color: #eee;
-  padding: 0.3em 0.5em;
+  color: #333;
+  font-weight: bold;
+  padding: 7px 15px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
   -webkit-box-shadow: #777 0 1px 3px;
   -moz-box-shadow: #222 0 1px 3px;
   box-shadow: #222 -1px 1px 3px;
-  text-shadow: 0 1px 2px #111;
+  text-shadow: 0 1px 0 #8BAA4B, 0 0 10px #8BAA4B;
   border: 0;
   text-decoration: none;
-  background: #2B9A07 url(../images/button-green.png) 0 0 repeat-x;
+  background: #84a049 url(../images/button-green.png) 0 0 repeat-x;
 }
 .submit input:hover {
   background-position: 0 -40px;
