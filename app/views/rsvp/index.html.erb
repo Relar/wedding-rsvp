@@ -1,15 +1,23 @@
 <h1>Welcome, guest!</h1>
 
-<%= form_for :person do |f| %>
-<div class="input">
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name %>
+<div class="columns two c4060 clearfix">
+  <div class="column left">
+    <%= form_for :person do |f| %>
+    <div class="input">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+    </div>
+    <div class="input">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+    </div>
+    <div class="submit">
+      <%= f.submit "Continue" %>
+    </div>
+    <% end %>
+  </div>
+  <div class="column right">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer condimentum justo in lacus elementum scelerisque. Ut urna orci, viverra sit amet pretium rhoncus, cursus ut arcu.</p>
+    <p>In consequat, eros non auctor aliquet, neque lectus interdum justo, eu hendrerit diam enim in mauris. Nulla pellentesque sapien vel leo laoreet tempor.</p>
+  </div>
 </div>
-<div class="input">
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name %>
-</div>
-<div class="submit">
-  <%= f.submit "Continue" %>
-</div>
-<% end %>

@@ -204,6 +204,12 @@ dl dd {
 .columns.two .column.right {
   float: right;
 }
+.columns.c4060 .column {
+  width: 40%;
+}
+.columns.c4060 .column.right {
+  width: 60%;
+}
 
 td {
   vertical-align: top;
