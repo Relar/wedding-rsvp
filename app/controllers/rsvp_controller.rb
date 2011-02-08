@@ -17,7 +17,7 @@ class RsvpController < ApplicationController
   end
 
   def disclaimer
-    if current_person.family.members.delete_if { |member| !member.is_invited_ceremony }.empty?
+    if current_person.family.people.delete_if { |member| !member.is_invited_ceremony }.empty?
       redirect_to :action => :details
     end
     if request.post?

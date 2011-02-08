@@ -16,10 +16,10 @@
   <%= f.text_area :street_address, :rows => 3 %>
 </div>
 
-<% unless @family.members.where(:is_invited_ceremony => true).empty? %>
+<% unless @family.people.where(:is_invited_ceremony => true).empty? %>
   <h2>Wedding Ceremony</h2>
-  <p>The following family members are invited to the wedding ceremony - <strong>please select those who will be able to attend</strong>.</p>
-  <%= f.fields_for :members, @family.members do |mf| %>
+  <p>The following family people are invited to the wedding ceremony - <strong>please select those who will be able to attend</strong>.</p>
+  <%= f.fields_for :people, @family.people do |mf| %>
     <% if mf.object.invited_ceremony? %>
       <%= mf.check_box :is_attending_ceremony %>
       <%= mf.label :is_attending_ceremony, mf.object.name %>
@@ -28,9 +28,9 @@
 <% end %>
 
 <h2>Reception</h2>
-<p>Please indicate which family members will be attending the reception, and what meal they will have.</p>
+<p>Please indicate which family people will be attending the reception, and what meal they will have.</p>
   <dl>
-  <%= f.fields_for :members, @family.members do |mf| %>
+  <%= f.fields_for :people, @family.people do |mf| %>
     <dt><%= mf.check_box :is_attending_reception %> <%= mf.object.name %></dt>
     <dd>
       <div class="input meal select">
