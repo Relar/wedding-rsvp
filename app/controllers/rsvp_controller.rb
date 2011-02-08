@@ -17,12 +17,10 @@ class RsvpController < ApplicationController
   end
 
   def disclaimer
-    if current_person.family.people.delete_if { |member| !member.is_invited_ceremony }.empty?
-      redirect_to :action => :details
-    end
+    redirect_to :action=> :details if current_person.family.people.where(:is_invited_ceremony => true).count == 0 or current_person.family.accepted_disclaimer
     if request.post?
       if params[:disclaimer][:agree] == "1"
-        session[:disclaimer_agreed] = true
+        @current_person.family.update_attributes(:accepted_disclaimer => true)
         redirect_to :action => :details
       else
         flash[:notice] = "You must read and agree to this information before continuing."
