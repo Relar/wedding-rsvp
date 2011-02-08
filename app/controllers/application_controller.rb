@@ -24,7 +24,12 @@ class ApplicationController < ActionController::Base
     end
 
     def current_person
-      @current_person ||= Person.find session[:person_id] unless session[:person_id].nil?
+      begin
+        @current_person ||= Person.find session[:person_id] unless session[:person_id].nil?
+      rescue
+        session[:person_id] = nil
+        redirect_to :root
+      end
     end
 
     def require_person
