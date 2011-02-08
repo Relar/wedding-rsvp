@@ -38,7 +38,7 @@
   <% @family.members.each do |member| %>
   <dt><%= member.name %></dt>
     <dd><%= member.attending_reception? ? "Attending" : "Not attending" %></dd>
-    <% if member.attending_reception? %><dd>Meal: <%= member.meal.name %></dd><% end %>
+    <% if member.attending_reception? %><dd>Meal: <%= member.meal.name rescue "None selected" %></dd><% end %>
   </dt>
   <% end %>
 </dl>
