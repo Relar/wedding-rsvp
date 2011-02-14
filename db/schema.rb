@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110208045023) do
+ActiveRecord::Schema.define(:version => 20110214022710) do
 
   create_table "families", :force => true do |t|
     t.string    "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20110208045023) do
     t.timestamp "updated_at"
     t.string    "rsvp_message",        :limit => 1024
     t.boolean   "accepted_disclaimer"
+    t.boolean   "is_guest"
   end
 
   create_table "meals", :force => true do |t|

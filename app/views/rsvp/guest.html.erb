@@ -1,0 +1,23 @@
+<h1>Confirm Guest Information</h1>
+
+<p>Please confirm your guest's details, and if they plan to attend with you.</p>
+
+<h2>Guest Attendance</h2>
+<%= form_for @family, :url => request.path do |f| %> 
+  <dl>
+    <%= f.fields_for :people, @family.people.where(:is_guest => true) do |mf| %>
+      <div class="input">
+        <%= mf.label :first_name %>
+        <%= mf.text_field :first_name %>
+      </div>
+      <div class="input">
+        <%= mf.label :last_name %>
+        <%= mf.text_field :last_name %>
+      </div>
+      <dd><%= mf.check_box :guest_is_attending? %> Is your guest attending with you?</dd>
+    <% end %>
+  </dl>
+  <div class="submit">
+    <%= f.submit "Save and Continue" %>
+  </div>
+<% end %>
