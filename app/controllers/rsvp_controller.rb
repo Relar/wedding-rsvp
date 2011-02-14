@@ -8,7 +8,7 @@ class RsvpController < ApplicationController
     if request.post?
       @person = Person.where(:is_adult => true).find(:first, :conditions => ["lower(first_name) = ? and lower(last_name) = ?", params[:person][:first_name].downcase, params[:person][:last_name].downcase])
       if @person.nil?
-        flash[:notice] = "Sorry, you're not cool enough."
+        flash[:notice] = "I'm sorry, I can't seem to find your record."
       else
         session[:person_id] = @person.id
         redirect_to :action => :disclaimer
@@ -23,7 +23,7 @@ class RsvpController < ApplicationController
         @current_person.family.update_attributes(:accepted_disclaimer => true)
         redirect_to :action => :details
       else
-        flash[:notice] = "You must read and agree to this information before continuing."
+        flash[:notice] = "Please review this information before you continue, it contains important ceremony information."
       end
     end
   end
