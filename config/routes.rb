@@ -11,10 +11,10 @@ WeddingRsvp::Application.routes.draw do
 
   root :to => "rsvp#index"
   match "rsvp/disclaimer"
+  match "rsvp/guest"
   match "rsvp/details"
   match "rsvp/confirm"
   match "rsvp/finished"
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -10,18 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110214022710) do
+ActiveRecord::Schema.define(:version => 20110214031636) do
 
   create_table "families", :force => true do |t|
-    t.string    "name"
-    t.string    "email"
-    t.string    "phone"
-    t.string    "street_address"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "rsvp_message",        :limit => 1024
-    t.boolean   "accepted_disclaimer"
-    t.boolean   "is_guest"
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "street_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "rsvp_message",        :limit => 1024
+    t.boolean  "accepted_disclaimer"
   end
 
   create_table "meals", :force => true do |t|
@@ -43,6 +42,8 @@ ActiveRecord::Schema.define(:version => 20110214022710) do
     t.integer   "meal_id"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.boolean   "is_guest"
+    t.boolean   "guest_is_attending"
   end
 
   create_table "rsvps", :force => true do |t|

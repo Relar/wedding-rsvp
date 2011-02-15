@@ -17,15 +17,29 @@ class RsvpController < ApplicationController
   end
 
   def disclaimer
-    redirect_to :action=> :details if current_person.family.people.where(:is_invited_ceremony => true).count == 0 or current_person.family.accepted_disclaimer
+    if current_person.family.people.where(:is_invited_ceremony => true).count == 0 or current_person.family.accepted_disclaimer
+      redirect_to :action => :guest
+    end 
     if request.post?
       if params[:disclaimer][:agree] == "1"
         @current_person.family.update_attributes(:accepted_disclaimer => true)
-        redirect_to :action => :details
+        redirect_to :action => :guest
       else
         flash[:notice] = "Please review this information before you continue, it contains important ceremony information."
       end
     end
+  end
+
+  def guest
+    @family = Person.find(session[:person_id]).family
+    redirect_to :action => :details if current_person.family.guests.empty?
+    unless params[:family].nil?
+      flash[:notice] = "Saved!"
+      @family.attributes = params[:family]
+      @family.save!
+      redirect_to :action => :details
+    end
+    @family.reload
   end
 
   def details
