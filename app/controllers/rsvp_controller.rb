@@ -22,7 +22,7 @@ class RsvpController < ApplicationController
     end 
     if request.post?
       if params[:disclaimer][:agree] == "1"
-        @current_person.family.update_attributes(:accepted_disclaimer => true)
+        @current_person.family.update_attributes :accepted_disclaimer => true
         redirect_to :action => :guest
       else
         flash[:notice] = "Please review this information before you continue, it contains important ceremony information."
@@ -32,14 +32,16 @@ class RsvpController < ApplicationController
 
   def guest
     @family = Person.find(session[:person_id]).family
-    redirect_to :action => :details if current_person.family.guests.empty?
+    if current_person.family.guests.empty?
+      redirect_to :action => :details
+      return
+    end 
     unless params[:family].nil?
       flash[:notice] = "Saved!"
       @family.attributes = params[:family]
       @family.save!
-      redirect_to :action => :details
+      redirect_to :action => :details #after guest stuff is filled out
     end
-    @family.reload
   end
 
   def details
@@ -50,7 +52,6 @@ class RsvpController < ApplicationController
       @family.save!
       redirect_to :action => :confirm
     end
-    @family.reload
   end
 
   def confirm

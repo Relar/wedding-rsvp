@@ -28,13 +28,13 @@
 <% end %>
 
 <h2>Reception</h2>
-<p>Please indicate the people will be attending the reception, and what meal they will have.</p>
+<p>Please indicate the people will be attending the reception, and a dinner selection for each.</p>
   <dl>
   <%= f.fields_for :people, @family.people do |mf| %>
     <dt><%= mf.check_box :is_attending_reception %> <%= mf.object.name %></dt>
     <dd>
       <div class="input meal select">
-        <%= mf.label :meal_id, "Meal choice" %>
+        <%= mf.label :meal_id, "Dinner choice" %>
         <% if mf.object.adult? %>
           <%= mf.collection_select :meal_id, Meal.where(:is_adult => true), :id, :name, :prompt => true %>
         <% end %>
