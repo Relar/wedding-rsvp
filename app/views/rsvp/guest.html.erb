@@ -1,8 +1,17 @@
 <h1>Confirm Guest Information</h1>
 
-<p>Please confirm your guest's details, and if they plan to attend with you.</p>
+<p>We have invited a guest to attend with your family. Please confirm their details, and if they plan to attend with you.</p>
 
-<h2>Guest Attendance</h2>
+<h2>Here is who we have so far on our list</h2>
+<%= form_for @family, :url => request.path do |f| %>
+  <dl>
+    <%= f.fields_for :people, @family.people.where(:is_guest => false) do |mf| %>
+      <%= mf.object.name %>
+    <% end %>
+  </dl>
+<% end %>
+
+<h2>Please fill in your guests details</h2>
 <%= form_for @family, :url => request.path do |f| %> 
   <dl>
     <%= f.fields_for :people, @family.people.where(:is_guest => true) do |mf| %>
