@@ -4,28 +4,30 @@
 
 <h2>Here is who we have so far on our list</h2>
 <%= form_for @family, :url => request.path do |f| %>
-  <dl>
+  <ol>
     <%= f.fields_for :people, @family.people.where(:is_guest => false) do |mf| %>
-      <%= mf.object.name %>
+      <li><%= mf.object.name %></li>
     <% end %>
-  </dl>
+  </ol>
 <% end %>
 
 <h2>Please fill in your guests details</h2>
 <%= form_for @family, :url => request.path do |f| %> 
-  <dl>
+  <ol>
     <%= f.fields_for :people, @family.people.where(:is_guest => true) do |mf| %>
-      <div class="input">
-        <%= mf.label :first_name %>
-        <%= mf.text_field :first_name %>
-      </div>
-      <div class="input">
-        <%= mf.label :last_name %>
-        <%= mf.text_field :last_name %>
-      </div>
-      <dd><%= mf.check_box :guest_is_attending? %> Is your guest attending with you?</dd>
+      <li>
+        <div class="input">
+          <%= mf.label :first_name %>
+          <%= mf.text_field :first_name %>
+        </div>
+        <div class="input">
+          <%= mf.label :last_name %>
+          <%= mf.text_field :last_name %>
+        </div>
+      </li>
+      <%= mf.check_box :guest_is_attending? %> Is your guest attending with you?
     <% end %>
-  </dl>
+  </ol>
   <div class="submit">
     <%= f.submit "Save and Continue" %>
   </div>
