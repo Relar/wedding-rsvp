@@ -17,6 +17,7 @@ class RsvpController < ApplicationController
   end
 
   def disclaimer
+    @jquery = true
     if current_person.family.people.where(:is_invited_ceremony => true).count == 0 or current_person.family.accepted_disclaimer
       redirect_to :action => :guest
     end 

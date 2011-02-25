@@ -1,47 +1,71 @@
+<script type="text/javascript">
+    jQuery( "button.previous" ).live( 'click', function() {
+      var shibboleet = jQuery( "div#hideable > div:visible" )
+      if (shibboleet.prev().length) shibboleet.hide('slow').prev( "div" ).show('slow');
+    } );  
+    jQuery( "button.next" ).live( 'click', function() {
+      var shibboleet = jQuery( "div#hideable > div:visible" )
+      if (shibboleet.next().length) shibboleet.hide('slow').next( "div" ).show('slow');
+    } );
+</script>
+
 <h1>Disclaimer</h1>
 <p>Please review this information before continuing.</p>
 <!-- This is ugly as shit. Fix it. -->
+<p><button class="previous">Previous</button> | <button class="next">Next</button></p>
+<div id="hideable">
+  <div id="whatamigettinginto">
+    <p>Before you RSVP as attending our wedding ceremony, we would like to give you an informative summary of what such adventures usually entail.  Since this will be many of our guests' first time embarking on such a special trip, we want to make sure everyone is aware of what they are “getting themselves into!”</p>
+  </div>
 
-<div id="whatamigettinginto">Before you RSVP as attending our wedding ceremony, we would like to give you an informative summary of what such adventures usually entail.  Since this will be many of our guests' first time embarking on such a special trip, we want to make sure everyone is aware of what they are “getting themselves into!”</div>
+  <div id="funstartshere" style="display:none">
+    <a href="http://www.flickr.com/photos/anthonyrhook/5045892330/in/set-72157624965347233/"><img title="Bayfield Marina" src="http://farm5.static.flickr.com/4092/5045892330_6d83d09c67_m.jpg" alt="Bayfield Marina" width="240" height="135" style="float:right"/></a>
+    <h3>Here is what the boat trip will consist of:</h3>
+    <p>We will be traveling via boat to an island which will be decided on the day of the wedding.  The location of the wedding ceremony will be strictly dependent on the weather that day.  Let's cross our fingers for great weather!</p>
 
-<div id="funstartshere" style="display:none"><a href="http://www.flickr.com/photos/anthonyrhook/5045892330/in/set-72157624965347233/"><img class="alignright" title="Bayfield Marina" src="http://farm5.static.flickr.com/4092/5045892330_6d83d09c67_m.jpg" alt="Bayfield Marina" width="240" height="135" /></a>
-  <h3>Here is what the boat trip will consist of:</h3>
-  We will be traveling via boat to an island which will be decided on the day of the wedding.  The location of the wedding ceremony will be strictly dependent on the weather that day.  Let's cross our fingers for great weather!
+    <p>We have six Captains transporting our wedding guests to our wedding island.  Guests will be assigned to a boat in groups of 5-7.  After being directed to a boat, we ask that all guests respect the Captains, their boats, and their orders.  Each Captain will give their group a short run-down of their vessel, their rules, and their emergency procedures.</p>
 
-  We have six Captains transporting our wedding guests to our wedding island.  Guests will be assigned to a boat in groups of 5-7.  After being directed to a boat, we ask that all guests respect the Captains, their boats, and their orders.  Each Captain will give their group a short run-down of their vessel, their rules, and their emergency procedures.
+    <p>Boating is a safe and fun way to experience the Apostle Islands, although sometimes the weather can change very fast.  The water may get very wavy and it can become very windy.  We want our guests to be aware that there is a chance the weather can get rough fast and unexpectedly.  We do not want this to alarm you; we have very safe and experienced Captains.  If this is at all uncomfortable to you, please think about whether this trip will work with your comfort level.</p>
+    <p style="text-align: center;"><img class="aligncenter" title="dinghy" src="http://farm6.static.flickr.com/5174/5418874219_4c85fafed8_m.jpg" alt="dinghy" width="240" height="180" /></p>
+    <p>We will be boarding our vessels from the city dock in Bayfield, WI.  Depending on our destination we expect the boat ride to be at least two hours each way.</p>
+    <p>When we get to our destination we will be unloading from the boat one of two ways:
+      <ol>
+        <li>If we choose an island with a dock, all the guests will be able to simply step foot off the boat onto the dock.</li>
+        <li>If we choose an island without a dock, we will need to anchor out from shore and get to the island's shore via dinghy. This means guests will need to step into a dinghy (a small inflatable boat), take a shore ride from the boat to the shore, and step out of the dinghy onto the shore (this is where guests might get a little wet).</li>
+      </ol>
+    Once we arrive and are on the island, we will be walking on sand.  We plan to have some lawn type chairs for people to sit on.</p>
+  </div>
 
-  Boating is a safe and fun way to experience the Apostle Islands, although sometimes the weather can change very fast.  The water may get very wavy and it can become very windy.  We want our guests to be aware that there is a chance the weather can get rough fast and unexpectedly.  We do not want this to alarm you; we have very safe and experienced Captains.  If this is at all uncomfortable to you, please think about whether this trip will work with your comfort level.
-  <p style="text-align: center;"><img class="aligncenter" title="dinghy" src="http://farm6.static.flickr.com/5174/5418874219_4c85fafed8_m.jpg" alt="dinghy" width="240" height="180" /></p>
-We will be boarding our vessels from the city dock in Bayfield, WI.  Depending on our destination we expect the boat ride to be at least two hours each way.
-When we get to our destination we will be unloading from the boat one of two ways:
-  <ol>
-  	<li>If we choose an island with a dock, all the guests will be able to simply step foot off the boat onto the dock.</li>
-  	<li>If we choose an island without a dock, we will need to anchor out from shore and get to the island's shore via dinghy. This means guests will need to step into a dinghy (a small inflatable boat), take a shore ride from the boat to the shore, and step out of the dinghy onto the shore (this is where guests might get a little wet).</li>
-  </ol>
-  Once we arrive and are on the island, we will be walking on sand.  We plan to have some lawn type chairs for people to sit on.</div>
+  <div id="protips" style="display:none">
+    <h3>Here are some boating suggestions:</h3>
+    <p>We want our guests to be as comfortable on our big day as possible.  Here are some suggestions we have put together to promote boating comfort
+      <ul>
+        <li>If you are not sure if you get sea sick easily, take some motion sickness medication at least one hour before the boat ride out to the island as well as one hour before we head back to Bayfield.  <a href="http://en.wikipedia.org/wiki/Dimenhydrinate" target="_blank">Dramamine (Dimenhydrinate)</a> is a very popular over the counter motion sickness medication.  We highly suggest that guests take Dramamine even if they do not expect to get sick.  Better safe than sorry.</li>
+        <li>Have sunscreen on hand.  We will have some in case of emergencies.  Remember, guests might need to apply some to the top of ears, head, nose, and shoulders.  We will be around a lot of water, meaning more of the sun will be reflected back at everyone.</li>
+        <li>Dress as comfortably as you like.  Shorts, tee-shirts, pull over sweaters, sandals, capri pants, will all be acceptable.  Dressing in layers is the best thing our guests can do!  One minute it might be hot, and the next there could be a chill in the air.  There is no need for our guests to wear something fancy out to an island and be uncomfortable the whole time.  We highly suggest sandals for our guests.</li>
+      </ul>
+      We will be providing refreshments, snacks, and water on the boats, and each boat has a bathroom onboard.  These may be referred to as the "head."</p>
+  </div>
 
-<div id="protips" style="display:none">
-  <h3>Here are some boating suggestions:</h3>
-  We want our guests to be as comfortable on our big day as possible.  Here are some suggestions we have put together to promote boating comfort
-  <ul>
-	<li>If you are not sure if you get sea sick easily, take some motion sickness medication at least one hour before the boat ride out to the island as well as one hour before we head back to Bayfield.  <a href="http://en.wikipedia.org/wiki/Dimenhydrinate" target="_blank">Dramamine (Dimenhydrinate)</a> is a very popular over the counter motion sickness medication.  We highly suggest that guests take Dramamine even if they do not expect to get sick.  Better safe than sorry.</li>
-	<li>Have sunscreen on hand.  We will have some in case of emergencies.  Remember, guests might need to apply some to the top of ears, head, nose, and shoulders.  We will be around a lot of water, meaning more of the sun will be reflected back at everyone.</li>
-	<li>Dress as comfortably as you like.  Shorts, tee-shirts, pull over sweaters, sandals, capri pants, will all be acceptable.  Dressing in layers is the best thing our guests can do!  One minute it might be hot, and the next there could be a chill in the air.  There is no need for our guests to wear something fancy out to an island and be uncomfortable the whole time.  We highly suggest sandals for our guests.</li>
-</ul>
-We will be providing refreshments, snacks, and water on the boats, and each boat has a bathroom onboard.  These may be referred to as the "head."</div>
+  <div id="hangon" style="display:none">
+    <h3>Wait... This doesn't look like my cup of tea (or coffee)...</h3>
+    <img class="alignleft" title="Lake Superior" src="http://farm5.static.flickr.com/4089/5045892184_f3fe6e560a_m.jpg" alt="Lake Superior" width="135" height="240" style="float:left" />
+    <p>As we stated, our top priority is our guests comfort and happiness. We want everyone to have a great time doing what they are comfortable doing.  If you feel that going to the wedding ceremony may not be the best option for you, do not force yourself to go.  We plan to video record the ceremony and take great photos!  If you find that you can only make the adventure half way and choose not to come to the beach, we fully respect your comfort level (keep in mind the boat cannot turn back once it leaves Bayfield).  If you choose not to take the boat trip, we will look forward to see you at the reception! Continue on to the Wedding Reception RSVP!</p>
+  </div>
 
-<div id="hangon" style="display:none"><h3>Wait... This doesn't look like my cup of tea (or coffee)...</h3>
-<img class="alignleft" title="Lake Superior" src="http://farm5.static.flickr.com/4089/5045892184_f3fe6e560a_m.jpg" alt="Lake Superior" width="135" height="240" />As we stated, our top priority is our guests comfort and happiness. We want everyone to have a great time doing what they are comfortable doing.  If you feel that going to the wedding ceremony may not be the best option for you, do not force yourself to go.  We plan to video record the ceremony and take great photos!  If you find that you can only make the adventure half way and choose not to come to the beach, we fully respect your comfort level (keep in mind the boat cannot turn back once it leaves Bayfield).  If you choose not to take the boat trip, we will look forward to see you at the reception! Continue on to the Wedding Reception RSVP!</div>
-<div id="whatsitgoingtobe" style="display:none"><h3>Great! Sign me up!</h3>
-If you feel like you are comfortable with how the boat trip is laid out we look forward to seeing you out on the water!  Please keep our boating comfort suggestions in mind, and continue on to the Wedding Ceremony RSVP.
+  <div id="whatsitgoingtobe" style="display:none">
+    <h3>Great! Sign me up!</h3>
+    <p>If you feel like you are comfortable with how the boat trip is laid out we look forward to seeing you out on the water!  Please keep our boating comfort suggestions in mind, and continue on to the Wedding Ceremony RSVP.</p>
 
-<%= form_for :disclaimer do |f| %>
-<div class="input checkbox">
-  <%= f.check_box :agree %>
-  <%= f.label :agree, "Yes, I have read and understand the above." %>
-</div>
-<div class="submit">
-  <%= f.submit "Continue" %>
-</div>
-</div>
-<% end %>
+    <%= form_for :disclaimer do |f| %>
+    <div class="input checkbox">
+      <%= f.check_box :agree %>
+      <%= f.label :agree, "Yes, I have read and understand the above." %>
+    </div>
+    <div class="submit">
+      <%= f.submit "Continue" %>
+    </div>
+  <% end %>
+  </div>
+</div> <!-- end div hideable -->
+  <p><button class="previous">Previous</button> | <button class="next">Next</button></p>
