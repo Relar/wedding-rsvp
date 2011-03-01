@@ -1,7 +1,7 @@
 <h1>Confirm Guest Information</h1>
 
-<p>We have invited a guest to attend with your family. Please confirm their details, and if they plan to attend with you.</p>
-
+<p>You are welcome to bring a guest, if you would like. Please confirm their details, and if they plan to attend with you.</p>
+<p>If you don't plan on having your guest attend, go ahead and click "Save and Continue" on the bottom.</p>
 <h2>Here is who we have so far on our list</h2>
 <%= form_for @family, :url => request.path do |f| %>
   <ol>
@@ -25,7 +25,7 @@
           <%= mf.text_field :last_name %>
         </div>
       </li>
-      <%= mf.check_box :guest_is_attending? %> Is your guest attending with you?
+      <%= mf.check_box :guest_is_attending? %> Please check this if you plan on having your guest attend as well.
     <% end %>
   </ol>
   <div class="submit">

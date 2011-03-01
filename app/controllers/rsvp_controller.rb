@@ -52,7 +52,12 @@ class RsvpController < ApplicationController
       @family.attributes = params[:family]
       @family.save!
       redirect_to :action => :confirm
+      return
     end
+
+    ar_true = ActiveRecord::Base.connection.quoted_true
+    ar_false = ActiveRecord::Base.connection.quoted_false
+    @invitees = @family.people.where("not (is_guest = #{ar_true} and guest_is_attending = #{ar_false})")
   end
 
   def confirm

@@ -80,6 +80,10 @@ h2 {
   margin: 1.5em -15px 0.5em;
 }
 
+img {
+  padding: 10px;
+}
+ 
 .bar {
   clear: both;
   background: #ddd;
