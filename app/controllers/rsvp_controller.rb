@@ -18,13 +18,14 @@ class RsvpController < ApplicationController
 
   def disclaimer
     @jquery = true
-    if current_person.family.people.where(:is_invited_ceremony => true).count == 0 or current_person.family.accepted_disclaimer
-      redirect_to :action => :guest
-    end 
+#    if current_person.family.people.where(:is_invited_ceremony => true).count == 0 or current_person.family.accepted_disclaimer
+#      redirect_to :action => :guest
+#    end 
     if request.post?
       if params[:disclaimer][:agree] == "1"
         @current_person.family.update_attributes :accepted_disclaimer => true
-        redirect_to :action => :guest
+#        redirect_to :action => :guest
+         redirect_to :action => :details
       else
         flash[:notice] = "Please review this information before you continue, it contains important ceremony information."
       end
@@ -46,6 +47,7 @@ class RsvpController < ApplicationController
   end
 
   def details
+    @jquery = true
     @family = Person.find(session[:person_id]).family
     unless params[:family].nil?
       flash[:notice] = "Saved!"
@@ -54,10 +56,6 @@ class RsvpController < ApplicationController
       redirect_to :action => :confirm
       return
     end
-
-    ar_true = ActiveRecord::Base.connection.quoted_true
-    ar_false = ActiveRecord::Base.connection.quoted_false
-    @invitees = @family.people.where("not (is_guest = #{ar_true} and guest_is_attending = #{ar_false})")
   end
 
   def confirm

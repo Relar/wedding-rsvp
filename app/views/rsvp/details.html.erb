@@ -3,43 +3,70 @@
 <%= form_for @family, :url => request.path do |f| %>
   <h2>Your Contact Information</h2>
   <p>Please ensure that we have your correct and complete contact information.</p>
-  <div class="input">
+  <div class="input email">
     <%= f.label :email %>
     <%= f.text_field :email %>
   </div>
-  <div class="input">
+  <div class="input phone">
     <%= f.label :phone %>
     <%= f.text_field :phone %>
   </div>
-  <div class="input">
+  <div class="input street_address">
     <%= f.label :street_address %>
     <%= f.text_area :street_address, :rows => 3 %>
   </div>
 
-  <% unless @invitees.where(:is_invited_ceremony => true).empty? %>
+  <% unless @family.people.where(:is_guest => true).empty? %>
+    <h2>Guest Information</h2>
+    <p>You may bring up to <%= pluralize @family.people.where(:is_guest => true).count, 'guest' %> - please check those who will be attending with you.</p>
+    <ul id="guest_details">
+    <%= f.fields_for :people, @family.people.where(:is_guest => true) do |mf| %>
+      <li class="person" data-id="<%= mf.object.id %>">
+        <div class="input checkbox">
+          <%= mf.check_box :guest_is_attending %>
+        </div>
+        <div class="input"> <!-- watch for changes here, update fields as required -->
+          <%= mf.label :first_name %>
+          <%= mf.text_field :first_name, :class => 'first_name' %>
+        </div>
+        <div class="input"> <!-- watch for changes here, updating fields as required -->
+          <%= mf.label :last_name %>
+          <%= mf.text_field :last_name, :class => 'last_name' %>
+        </div>
+      </li>
+    <% end %>
+    </ul>
+  <% end %>
+
+<!-- I have to show guests in here, hide them until the checkbox is checked, somehow identifying them -->
+  <% unless @family.people.where(:is_invited_ceremony => true).empty? %>
     <h2>Wedding Ceremony</h2>
     <p>Please indicate the people that will be attending the wedding ceremony.</p>
-    <%= f.fields_for :people, @invitees do |mf| %>
-      <%= mf.check_box :is_attending_ceremony %>
-      <%= mf.label :is_attending_ceremony, mf.object.name %>
+    <%= f.fields_for :people, @persons do |mf| %>
+      <div class="person <% if mf.object.is_guest %>guest<% end %> person-<%= mf.object.id %>">
+        <%= mf.check_box :is_attending_ceremony %>
+        <%= mf.label :is_attending_ceremony, mf.object.name, :class => 'name' %>
+      </div>
     <% end %>
   <% end %>
 
+<!-- Same as Wedding Ceremony, as far as hiding them until it's checked, and updating fields -->
   <h2>Reception</h2>
   <p>Please indicate the people will be attending the reception, and a dinner selection for each person.</p>
-  <dl>
-  <%= f.fields_for :people, @invitees do |mf| %>
-    <dt><%= mf.check_box :is_attending_reception %> <%= mf.object.name %></dt>
-    <dd>
+  <%= f.fields_for :people, @family.people do |mf| %>
+    <div class="person <% if mf.object.is_guest %>guest<% end %> person-<%= mf.object.id %>">
+      <div>
+        <%= mf.check_box :is_attending_reception %>
+        <span class="name"><%= mf.object.name %></span>
+      </div>
       <div class="input meal select">
         <%= mf.label :meal_id, "Dinner choice" %>
         <% if mf.object.adult? %>
           <%= mf.collection_select :meal_id, Meal.where(:is_adult => true), :id, :name, :prompt => true %>
         <% end %>
       </div>
-    </dd>
+    </div>
   <% end %>
-  </dl>
 
   <h2>Leave a message</h2>
   <p>If you have any additional comments, questions, or concerns, leave a message here and we'll be in touch.</p>
@@ -51,3 +78,61 @@
     <%= f.submit "Save and continue" %>
   </div>
 <% end %>
+
+<style type="text/css">
+  h2 {
+    clear: both;
+  }
+  .input.email, .input.phone, .input.street_address {
+    float: left;
+    clear: none;
+    width: 50%;
+  }
+  .input.email input, .input.phone input, .input.street_address textarea {
+    width: 80%;
+  }
+  .input.street_address {
+    padding-bottom: 20px;
+  }
+  .person {
+    margin: 10px 0;
+  }
+  .person.guest {
+    display: none;
+  }
+  .person .name {
+    font-size: 15px;
+  }
+  #guest_details {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 50px;
+  }
+  #guest_details .input.checkbox {
+    margin: 5px 0 0 0;
+  }
+  #guest_details .input {
+    float: left;
+    margin-left: 10px;
+    clear: none;
+  }
+</style>
+
+<!-- This may or may not be completely broken,basically taken straight from the example from ike. what does $(this) resolve -->
+<script type="text/javascript">
+  jQuery('.guest').css('display', jQuery(this).is(':checked') ? 'block' : 'none');
+  jQuery('#guest_details .person :checkbox').bind('checkstate', function() {
+    person = jQuery(this).parents('.person:first');
+    if(jQuery(this).is(':checked')) {
+      jQuery('.guest.person-' + person.data('id')).slideDown(300);
+    } else {
+      jQuery('.guest.person-' + person.data('id')).slideUp(300);
+    }
+    jQuery(':text', person).attr('disabled', !jQuery(this).is(':checked')).prev('label').css('opacity', jQuery(this).is(':checked') ? 1 : 0.6 );
+  }).live('click', function() { jQuery(this).trigger('checkstate'); }).trigger('checkstate');
+  jQuery('#guest_details input').live('keyup', function() {
+    person = jQuery(this).parents('.person:first');
+    jQuery('.person-' + person.data('id') + ' .name').text(jQuery(':input.first_name', person).val() + ' ' + jQuery(':input.last_name', person).val());
+  });
+</script>
