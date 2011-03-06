@@ -10,17 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110214031636) do
+ActiveRecord::Schema.define(:version => 20110304052524) do
 
   create_table "families", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "phone"
-    t.string   "street_address"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "rsvp_message",        :limit => 1024
-    t.boolean  "accepted_disclaimer"
+    t.string    "name"
+    t.string    "email"
+    t.string    "phone"
+    t.string    "street_address"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "rsvp_message",        :limit => 1024
+    t.boolean   "accepted_disclaimer"
   end
 
   create_table "meals", :force => true do |t|
@@ -32,18 +32,18 @@ ActiveRecord::Schema.define(:version => 20110214031636) do
   end
 
   create_table "people", :force => true do |t|
-    t.integer   "family_id"
-    t.string    "first_name"
-    t.string    "last_name"
-    t.boolean   "is_invited_ceremony"
-    t.boolean   "is_attending_ceremony"
-    t.boolean   "is_attending_reception"
-    t.boolean   "is_adult"
-    t.integer   "meal_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.boolean   "is_guest"
-    t.boolean   "guest_is_attending"
+    t.integer  "family_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.boolean  "is_invited_ceremony"
+    t.boolean  "is_attending_ceremony"
+    t.boolean  "is_attending_reception"
+    t.boolean  "is_adult"
+    t.integer  "meal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_guest"
+    t.boolean  "is_guest_attending"
   end
 
   create_table "rsvps", :force => true do |t|

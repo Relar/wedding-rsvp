@@ -36,10 +36,12 @@
 <h2>Reception</h2>
 <dl>
   <% @family.people.each do |member| %>
+  <% next if member.is_guest? and !member.is_guest_attending? %>
   <dt><%= member.name %></dt>
     <dd><%= member.attending_reception? ? "Attending" : "Not attending" %></dd>
     <% if member.attending_reception? %><dd>Meal: <%= member.meal.name rescue "None selected" %></dd><% end %>
   </dt>
+  <%= ap member.attributes %>
   <% end %>
 </dl>
 

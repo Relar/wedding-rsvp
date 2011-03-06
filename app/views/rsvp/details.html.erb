@@ -23,13 +23,13 @@
     <%= f.fields_for :people, @family.people.where(:is_guest => true) do |mf| %>
       <li class="person" data-id="<%= mf.object.id %>">
         <div class="input checkbox">
-          <%= mf.check_box :guest_is_attending %>
+          <%= mf.check_box :is_guest_attending %>
         </div>
-        <div class="input"> <!-- watch for changes here, update fields as required -->
+        <div class="input">
           <%= mf.label :first_name %>
           <%= mf.text_field :first_name, :class => 'first_name' %>
         </div>
-        <div class="input"> <!-- watch for changes here, updating fields as required -->
+        <div class="input">
           <%= mf.label :last_name %>
           <%= mf.text_field :last_name, :class => 'last_name' %>
         </div>
@@ -38,7 +38,6 @@
     </ul>
   <% end %>
 
-<!-- I have to show guests in here, hide them until the checkbox is checked, somehow identifying them -->
   <% unless @family.people.where(:is_invited_ceremony => true).empty? %>
     <h2>Wedding Ceremony</h2>
     <p>Please indicate the people that will be attending the wedding ceremony.</p>
@@ -50,14 +49,13 @@
     <% end %>
   <% end %>
 
-<!-- Same as Wedding Ceremony, as far as hiding them until it's checked, and updating fields -->
   <h2>Reception</h2>
   <p>Please indicate the people will be attending the reception, and a dinner selection for each person.</p>
   <%= f.fields_for :people, @family.people do |mf| %>
     <div class="person <% if mf.object.is_guest %>guest<% end %> person-<%= mf.object.id %>">
       <div>
         <%= mf.check_box :is_attending_reception %>
-        <span class="name"><%= mf.object.name %></span>
+        <%= mf.label :is_attending_reception, mf.object.name, :class => 'name' %>
       </div>
       <div class="input meal select">
         <%= mf.label :meal_id, "Dinner choice" %>
@@ -119,15 +117,14 @@
   }
 </style>
 
-<!-- This may or may not be completely broken,basically taken straight from the example from ike. what does $(this) resolve -->
 <script type="text/javascript">
   jQuery('.guest').css('display', jQuery(this).is(':checked') ? 'block' : 'none');
   jQuery('#guest_details .person :checkbox').bind('checkstate', function() {
     person = jQuery(this).parents('.person:first');
     if(jQuery(this).is(':checked')) {
-      jQuery('.guest.person-' + person.data('id')).slideDown(300);
+      jQuery('.guest.person-' + person.data('id')).slideDown('slow');
     } else {
-      jQuery('.guest.person-' + person.data('id')).slideUp(300);
+      jQuery('.guest.person-' + person.data('id')).slideUp('slow');
     }
     jQuery(':text', person).attr('disabled', !jQuery(this).is(':checked')).prev('label').css('opacity', jQuery(this).is(':checked') ? 1 : 0.6 );
   }).live('click', function() { jQuery(this).trigger('checkstate'); }).trigger('checkstate');
