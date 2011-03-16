@@ -11,10 +11,10 @@ class Person < ActiveRecord::Base
 
   def name
     unless self.first_name.to_s.empty? and self.last_name.to_s.empty?
-    [self.first_name, self.last_name].join ' '
+      [self.first_name, self.last_name].join ' '
     else
-    "Unnamed Guest"
-    #self.first_name = "Unnamed", self.last_name = "Guest"
+      "Unnamed Guest"
+      #self.first_name = "Unnamed", self.last_name = "Guest"
     end
   end
 
