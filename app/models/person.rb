@@ -14,7 +14,6 @@ class Person < ActiveRecord::Base
       [self.first_name, self.last_name].join ' '
     else
       "Unnamed Guest"
-      #self.first_name = "Unnamed", self.last_name = "Guest"
     end
   end
 

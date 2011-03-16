@@ -23,7 +23,7 @@
     <%= f.fields_for :people, @family.people.where(:is_guest => true) do |mf| %>
       <li class="person" data-id="<%= mf.object.id %>">
         <div class="input checkbox">
-          <%= mf.check_box :guest_is_attending %>
+          <%= mf.check_box :is_guest_attending %>
         </div>
         <div class="input">
           <%= mf.label :first_name %>
