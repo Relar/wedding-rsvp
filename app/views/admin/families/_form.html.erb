@@ -1,0 +1,74 @@
+<%= form_for(@family) do |f| %>
+  <% if @family.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@family.errors.count, "error") %> prohibited this family from being saved:</h2>
+
+      <ul>
+      <% @family.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% ["name", "email", "phone", "street_address", "rsvp_message", "accepted_disclaimer"].each do |col| %>
+  <div class="field">
+    <%= f.label col.to_sym %><br />
+    <% if Family.columns_hash[col].type == :boolean %>
+      <%= f.check_box col.to_sym %>
+    <% else %>
+      <% if Family.columns_hash[col].limit > 255 %>
+        <%= f.text_area col.to_sym, :rows => 5 %>
+      <% else %>
+        <%= f.text_field col.to_sym %>
+      <% end %>
+    <% end %>
+  </div>
+  <% end %>
+
+  <h2>People</h2>
+  <ul id="admin_family_people">
+  <%= f.fields_for :people, @family.people.to_a.push(Person.new) do |mf| %>
+  <li class="person">
+    <% ["first_name", "last_name", "is_guest", "is_guest_attending", "is_invited_ceremony", "is_attending_ceremony", "is_attending_reception"].each do |col| %>
+      <% next if ["id", "family_id", "meal_id", "created_at", "updated_at"].include? col %>
+      <div class="field">
+        <%= mf.label col.to_sym %><br />
+        <% if Person.columns_hash[col].type == :boolean %>
+          <%= mf.check_box col.to_sym %>
+        <% else %>
+          <% if Person.columns_hash[col].limit > 255 %>
+            <%= mf.text_area col.to_sym, :rows => 5 %>
+          <% else %>
+            <%= mf.text_field col.to_sym %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= mf.label :meal_id %><br />
+      <%= mf.select :meal_id, Meal.all.collect { |meal| [meal.name, meal.id] } %>
+    </div>
+  </li>
+  <% end %>
+  </ul>
+
+  <p><input type="button" id="add_person" value="Add another person" /></p>
+
+  <script type="text/javascript">
+    var person_template = jQuery('form .person:last').remove();
+    jQuery('#add_person').click(function() {
+      var clone = person_template.clone();
+      clone.find(':input').each(function() {
+        jQuery(this).attr('name', function(i, val) {
+          return val.replace(/[0-9]+/, jQuery('form .person').length);
+        });
+      });
+      clone.hide().appendTo('#admin_family_people').slideDown();
+    });
+  </script>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

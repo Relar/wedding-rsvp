@@ -1,0 +1,21 @@
+<h1>Listing families</h1>
+<%= link_to 'New Meal', new_admin_meal_path %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Is Adult</th>
+  </tr>
+
+<% @meals.each do |meal| %>
+  <tr>
+    <td><%= meal.name %></td>
+    <td><%= meal.price %></td>
+    <td><%= meal.is_adult ? "Yes" : "No" %></td>
+    <td><%= link_to 'Show', meal %></td>
+    <td><%= link_to 'Edit', edit_admin_meal_path(meal) %></td>
+    <td><%= link_to 'Destroy', meal, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

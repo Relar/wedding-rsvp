@@ -243,3 +243,21 @@ td {
   font-size: 1.35em;
   line-height: 120%;
 }
+
+table {
+  border-collapse: collapse;
+}
+
+table th, table td {
+  text-align: left;
+  vertical-align: top;
+  margin: 0;
+  padding: 0.5em;
+}
+table th {
+  vertical-align: bottom;
+}
+
+table tr:nth-child(even) {
+  background: #eee;
+}

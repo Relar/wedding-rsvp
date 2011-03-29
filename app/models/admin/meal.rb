@@ -1,2 +1,2 @@
-class Admin::Meal < ActiveRecord::Base
+class Admin::Meal < Meal
 end

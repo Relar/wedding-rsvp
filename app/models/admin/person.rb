@@ -1,2 +1,2 @@
-class Admin::Person < ActiveRecord::Base
+class Admin::Person < Person
 end

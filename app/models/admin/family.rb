@@ -1,2 +1,2 @@
-class Admin::Family < ActiveRecord::Base
+class Admin::Family < Family
 end

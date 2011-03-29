@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @meal.name %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @meal.price %>
+</p>
+<p>
+  <b>Is Adult:</b>
+  <%= @meal.is_adult ? "Yes" : "No" %>
+</p>
+
+<%= link_to 'Edit', edit_admin_meal_path(@meal) %> |
+<%= link_to 'Back', admin_meals_path %>
