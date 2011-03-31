@@ -4,7 +4,7 @@ class Admin::FamiliesController < ApplicationController
   # GET /families
   # GET /families.xml
   def index
-    @families = Family.all
+    @families = Admin::Family.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class Admin::FamiliesController < ApplicationController
   # GET /families/1
   # GET /families/1.xml
   def show
-    @family = Family.find(params[:id])
+    @family = Admin::Family.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +26,7 @@ class Admin::FamiliesController < ApplicationController
   # GET /families/new
   # GET /families/new.xml
   def new
-    @family = Family.new
+    @family = Admin::Family.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,17 +36,17 @@ class Admin::FamiliesController < ApplicationController
 
   # GET /families/1/edit
   def edit
-    @family = Family.find(params[:id])
+    @family = Admin::Family.find(params[:id])
   end
 
   # POST /families
   # POST /families.xml
   def create
-    @family = Family.new(params[:admin_family])
+    @family = Admin::Family.new(params[:admin_family])
 
     respond_to do |format|
       if @family.save(false)
-        format.html { redirect_to(@family, :notice => 'Family was successfully created.') }
+        format.html { redirect_to(@family, :notice => 'Admin::Family was successfully created.') }
         format.xml  { render :xml => @family, :status => :created, :location => @family }
       else
         format.html { render :action => "new" }
@@ -58,12 +58,12 @@ class Admin::FamiliesController < ApplicationController
 # PUT /families/1
   # PUT /families/1.xml
   def update
-    @family = Family.find(params[:id])
+    @family = Admin::Family.find(params[:id])
 
     respond_to do |format|
       @family.attributes = params[:admin_family]
       if @family.save(false)
-        format.html { redirect_to(@family, :notice => 'Family was successfully updated.') }
+        format.html { redirect_to(@family, :notice => 'Admin::Family was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -75,7 +75,7 @@ class Admin::FamiliesController < ApplicationController
   # DELETE /families/1
   # DELETE /families/1.xml
   def destroy
-    @family = Family.find(params[:id])
+    @family = Admin::Family.find(params[:id])
     @family.destroy
 
     respond_to do |format|
