@@ -1,12 +1,13 @@
 class Person < ActiveRecord::Base
-  belongs_to :family
+  belongs_to :family, :inverse_of => :people
   belongs_to :meal
 
-  before_save do |person|
-    if person.is_guest and !person.is_guest_attending
-      person.is_attending_ceremony = false
-      person.is_attending_reception = false
+  before_save do
+    if self.is_guest and !self.is_guest_attending
+      self.is_attending_ceremony = false
+      self.is_attending_reception = false
     end
+    true
   end
 
   def name

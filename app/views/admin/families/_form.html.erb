@@ -28,9 +28,17 @@
 
   <h2>People</h2>
   <ul id="admin_family_people">
-  <%= f.fields_for :people, @family.people.to_a.push(Person.new) do |mf| %>
+  <% @family.people.build %>
+  <%= f.fields_for :people, @family.people do |mf| %>
   <li class="person">
-    <% ["first_name", "last_name", "is_guest", "is_guest_attending", "is_invited_ceremony", "is_attending_ceremony", "is_attending_reception"].each do |col| %>
+    <% unless mf.object.nil? or mf.object.new_record? %>
+    <div>
+      <strong><%= mf.object.name %></strong>
+      <%= mf.label :_destroy, "Remove? " %>
+      <%= mf.check_box :_destroy %>
+    </div>
+    <% end %>
+    <% ["first_name", "last_name", "is_adult", "is_guest", "is_invited_ceremony", "is_attending_ceremony", "is_guest_attending", "is_attending_reception"].each do |col| %>
       <% next if ["id", "family_id", "meal_id", "created_at", "updated_at"].include? col %>
       <div class="field">
         <%= mf.label col.to_sym %><br />
@@ -47,7 +55,7 @@
     <% end %>
     <div class="field">
       <%= mf.label :meal_id %><br />
-      <%= mf.select :meal_id, Meal.all.collect { |meal| [meal.name, meal.id] } %>
+      <%= mf.select :meal_id, Meal.all.collect { |meal| [meal.name, meal.id] }, { :include_blank => true } %>
     </div>
   </li>
   <% end %>

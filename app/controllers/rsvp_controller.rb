@@ -36,10 +36,12 @@ class RsvpController < ApplicationController
     @family = Person.find(session[:person_id]).family
     unless params[:family].nil?
       @family.attributes = params[:family]
-      @family.save!
-      flash[:notice] = "Saved!"
-      redirect_to :action => :confirm
-      return
+      begin
+        @family.save!
+        flash[:notice] = "Saved!"
+        redirect_to :action => :confirm
+      rescue
+      end
     end
   end
 

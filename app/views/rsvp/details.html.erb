@@ -1,5 +1,17 @@
 <h1>RSVP Details</h1>
 
+<% if @family.errors.any? %>
+  <div id="error_explanation">
+    <h2>Please fix the following <%= pluralize(@family.errors.count, "error") %> before you continue:</h2>
+    <ul>
+    <% @family.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+    <p>Please make your corrections below and submit again.</p>
+  </div>
+<% end %>
+
 <%= form_for @family, :url => request.path do |f| %>
   <h2>Your Contact Information</h2>
   <p>Please ensure that we have your correct and complete contact information.</p>

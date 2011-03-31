@@ -7,7 +7,7 @@ gem 'rails', '3.0.3'
 
 gem 'sqlite3', :require => 'sqlite3'
 
-gem 'active_scaffold_vho'
+# gem 'active_scaffold_vho'
 gem 'awesome_print'
 gem 'authlogic'
 gem 'dynamic_form'

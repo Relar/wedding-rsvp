@@ -1,6 +1,6 @@
 WeddingRsvp::Application.routes.draw do
 
-  resources :foos
+#  resources :foos
 
   namespace :admin do resources :meals do as_routes end end
   namespace :admin do resources :people do as_routes end end

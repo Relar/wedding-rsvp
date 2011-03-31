@@ -2,6 +2,8 @@ body#rsvp {
   margin: 2em auto;
   font-family: Sans, Helvetica, Arial, Verdana, sans-serif;
   background: #ddd;
+  font-size: 13px;
+  line-height: 18px;
 }
 
 #wrapper {
@@ -79,6 +81,9 @@ h2 {
   padding: 0.5em 15px;
   margin: 1.5em -15px 0.5em;
 }
+#error_explanation h2 {
+  background: #ddd;
+}
 
 img {
   padding: 10px;
@@ -142,6 +147,9 @@ form.button_to, form.button_to > div {
   display: block;
   padding: 0.5em 0;
 }
+.input .field_with_errors label {
+  color: #a00;
+}
 .input.checkbox label, .input.select label {
   display: inline;
 }
@@ -172,29 +180,6 @@ form.button_to, form.button_to > div {
 }
 .submit {
   margin: 1.5em 0.2em 1em;
-}
-.submit input {
-  font-size: 20px;
-  cursor: pointer;
-  color: #333;
-  font-weight: bold;
-  padding: 7px 15px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  -webkit-box-shadow: #777 0 1px 3px;
-  -moz-box-shadow: #222 0 1px 3px;
-  box-shadow: #222 -1px 1px 3px;
-  text-shadow: 0 1px 0 #8BAA4B, 0 0 10px #8BAA4B;
-  border: 0;
-  text-decoration: none;
-  background: #84a049 url(../images/button-green.png) 0 0 repeat-x;
-}
-.submit input:hover {
-  background-position: 0 -40px;
-}
-.submit input:active {
-  background-position: 0 -80px;
 }
 
 dl dt {

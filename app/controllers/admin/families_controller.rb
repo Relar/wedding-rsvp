@@ -45,7 +45,7 @@ class Admin::FamiliesController < ApplicationController
     @family = Family.new(params[:admin_family])
 
     respond_to do |format|
-      if @family.save
+      if @family.save(false)
         format.html { redirect_to(@family, :notice => 'Family was successfully created.') }
         format.xml  { render :xml => @family, :status => :created, :location => @family }
       else
@@ -61,7 +61,8 @@ class Admin::FamiliesController < ApplicationController
     @family = Family.find(params[:id])
 
     respond_to do |format|
-      if @family.update_attributes(params[:admin_family])
+      @family.attributes = params[:admin_family]
+      if @family.save(false)
         format.html { redirect_to(@family, :notice => 'Family was successfully updated.') }
         format.xml  { head :ok }
       else
