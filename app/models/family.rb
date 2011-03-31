@@ -6,5 +6,5 @@ class Family < ActiveRecord::Base
 
     accepts_nested_attributes_for :people, :allow_destroy => true, :reject_if => :all_blank
 
-    validates_presence_of :email, :phone, :street_address
+    validates_presence_of :phone, :street_address
 end
