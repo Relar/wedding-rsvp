@@ -2,14 +2,12 @@ WeddingRsvp::Application.routes.draw do
 
 #  resources :foos
 
-  namespace :admin do resources :meals do as_routes end end
-  namespace :admin do resources :people do as_routes end end
-  #namespace :admin do resources :families do as_routes end end
   namespace :admin do
     root :to => "session#index"
     match "login" => "session#login", :as => :login
     match "logout" => "session#logout", :as => :logout
     resources :families
+    resources :meals
   end
 
   root :to => "rsvp#index"
