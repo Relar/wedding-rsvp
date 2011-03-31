@@ -11,4 +11,8 @@ module ApplicationHelper
     @current_person ||= session[:person_id]
   end
 
+  def family_path family
+    admin_family_path family
+  end
+
 end
