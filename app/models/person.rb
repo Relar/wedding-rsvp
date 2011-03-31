@@ -3,6 +3,7 @@ class Person < ActiveRecord::Base
   belongs_to :meal
 
   before_save do
+    return true
     if self.is_guest and !self.is_guest_attending
       self.is_attending_ceremony = false
       self.is_attending_reception = false

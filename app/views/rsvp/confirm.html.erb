@@ -41,7 +41,6 @@
     <dd><%= member.attending_reception? ? "Attending" : "Not attending" %></dd>
     <% if member.attending_reception? %><dd>Meal: <%= member.meal.name rescue "None selected" %></dd><% end %>
   </dt>
-  <%= ap member.attributes %>
   <% end %>
 </dl>
 
