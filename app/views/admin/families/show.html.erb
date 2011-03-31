@@ -1,7 +1,7 @@
 <h1>Family: <%= @family.name %></h1>
 
 <%= link_to 'Edit', edit_admin_family_path(@family) %> |
-<%= link_to 'Destroy', @family, :confirm => "Are you sure?", :method => :delete %>
+<%= link_to 'Destroy', admin_family_path(@family), :confirm => "Are you sure?", :method => :delete %>
 <%= link_to 'Back', admin_families_path %>
 
 <p id="notice"><%= notice %></p>
