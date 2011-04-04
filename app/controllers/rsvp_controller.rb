@@ -6,7 +6,7 @@ class RsvpController < ApplicationController
     session[:person_id] = nil
     @person = Person.new
     if request.post?
-      @person = Person.where(:is_adult => true).find(:first, :conditions => ["lower(first_name) = ? and lower(last_name) = ?", params[:person][:first_name].downcase, params[:person][:last_name].downcase])
+      @person = Person.where(:is_adult => true).find(:first, :conditions => ["lower(first_name) = ? and lower(last_name) = ?", params[:person][:first_name].downcase.strip, params[:person][:last_name].downcase.strip])
       if @person.nil?
         flash[:notice] = "I'm sorry, I can't seem to find your record."
       else

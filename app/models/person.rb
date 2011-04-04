@@ -11,6 +11,11 @@ class Person < ActiveRecord::Base
     true
   end
 
+  before_save do
+    self.first_name = self.first_name.strip
+    self.last_name = self.last_name.strip
+  end
+
   def name
     unless self.first_name.to_s.empty? and self.last_name.to_s.empty?
       [self.first_name, self.last_name].join ' '
