@@ -41,14 +41,14 @@
     <% ["first_name", "last_name", "is_adult", "is_guest", "is_invited_ceremony", "is_attending_ceremony", "is_guest_attending", "is_attending_reception"].each do |col| %>
       <% next if ["id", "family_id", "meal_id", "created_at", "updated_at"].include? col %>
       <div class="field">
-        <%= mf.label col.to_sym %><br />
+        <%= mf.label col.to_sym %>
         <% if Person.columns_hash[col].type == :boolean %>
-          <%= mf.check_box col.to_sym %>
+          <%= mf.check_box col.to_sym %><br />
         <% else %>
           <% if Person.columns_hash[col].limit > 255 %>
-            <%= mf.text_area col.to_sym, :rows => 5 %>
+            <%= mf.text_area col.to_sym, :rows => 5 %><br />
           <% else %>
-            <%= mf.text_field col.to_sym %>
+            <%= mf.text_field col.to_sym %><br />
           <% end %>
         <% end %>
       </div>
