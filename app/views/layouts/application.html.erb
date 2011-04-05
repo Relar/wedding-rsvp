@@ -3,7 +3,7 @@
 <head>
   <title>Hooked on Us: RSVP</title>
   <%= stylesheet_link_tag :all %>
-  <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Meddon" %>
+  <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Kreon:300" %>
   <%= javascript_include_tag :defaults %>
 
   <% unless @jquery.nil? %>
@@ -20,8 +20,7 @@
 
 <div id="wrapper">
   <div id="header">
-    <div class="rsvp"><%= link_to "RSVP", :root %></div>
-    <div class="hou"><%= link_to "Hooked on Us", :root %></div>
+    <div class="branding"><%= link_to "Hooked on Us", :root %></div>
   </div>
   <div id="main">
     <% if current_person and !request.path.start_with? "/admin" %>
@@ -37,6 +36,18 @@
     </div>
   <% end %>
 </div>
-
+<div id="footer">
+  <hr />
+  <p>
+    <a href="http://hookedonus.com/">Home</a>
+    <a href="http://rsvp.hookedonus.com">RSVP</a>
+    <a href="http://hookedonus.com/category/blog">Blog</a>
+    <a href="http://hookedonus.com/lodging">Lodging</a>
+    <a href="http://hookedonus.com/ceremony">Ceremony</a>
+    <a href="http://hookedonus.com/reception">Reception</a>
+    <a href="http://hookedonus.com/registry">Registry</a>
+    <a href="http://hookedonus.com/contact">Contact Us</a></div>
+  </p>
+</div> 
 </body>
 </html>
