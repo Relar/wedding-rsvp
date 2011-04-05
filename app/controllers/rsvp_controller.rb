@@ -17,7 +17,6 @@ class RsvpController < ApplicationController
   end
 
   def disclaimer
-    @jquery = true
     if current_person.family.people.where(:is_invited_ceremony => true).count == 0 or current_person.family.accepted_disclaimer
       redirect_to :action => :details
     end 
@@ -32,7 +31,6 @@ class RsvpController < ApplicationController
   end
 
   def details
-    @jquery = true
     @family = Person.find(session[:person_id]).family
     unless params[:family].nil?
       @family.attributes = params[:family]

@@ -11,7 +11,7 @@ gem 'sqlite3', :require => 'sqlite3'
 gem 'awesome_print'
 gem 'authlogic'
 gem 'dynamic_form'
-# gem 'jquery-rails', '>= 0.2.6'
+gem 'jquery-rails', '>= 0.2.6'
 
 # Use unicorn as the web server
 # gem 'unicorn'
