@@ -16,31 +16,32 @@
     <div class="branding"><%= link_to "Hooked on Us", :root %></div>
   </div>
   <div id="main">
-    <% if current_person and !request.path.start_with? "/admin" %>
+    <% if current_person and !params[:controller].start_with? 'admin/' %>
     <div id="id"><%= current_person.name %></div>
     <% end %>
+    <h1>Wedding RSVP<% if params[:controller].start_with? 'admin/' %> Admin<% end %></h1>
     <%= show_flash %>
     <%= yield %>
   </div>
-  <% if current_user %>
-    <div id="admin_bar" class="bar">
-    Hello there, <%= current_user.name %>.
-    <%= link_to "Admin panel", :admin_root %> | <%= link_to "Logout", :admin_logout %>
-    </div>
-  <% end %>
 </div>
 <div id="footer">
   <hr />
-  <p>
-    <a href="http://hookedonus.com/">Home</a>
-    <a href="http://rsvp.hookedonus.com">RSVP</a>
-    <a href="http://hookedonus.com/category/blog">Blog</a>
-    <a href="http://hookedonus.com/lodging">Lodging</a>
-    <a href="http://hookedonus.com/ceremony">Ceremony</a>
-    <a href="http://hookedonus.com/reception">Reception</a>
-    <a href="http://hookedonus.com/registry">Registry</a>
-    <a href="http://hookedonus.com/contact">Contact Us</a></div>
-  </p>
+  <% if current_user %>
+  <div id="admin-bar">
+  Hello there, <%= current_user.name %>.
+  <%= link_to "Admin panel", :admin_root %> | <%= link_to "Logout", :admin_logout %>
+  </div>
+  <% end %>
+  <ul role="nav">
+    <li><a href="http://hookedonus.com/">Home</a></li>
+    <li><a href="http://rsvp.hookedonus.com">RSVP</a></li>
+    <li><a href="http://hookedonus.com/category/blog">Blog</a></li>
+    <li><a href="http://hookedonus.com/lodging">Lodging</a></li>
+    <li><a href="http://hookedonus.com/ceremony">Ceremony</a></li>
+    <li><a href="http://hookedonus.com/reception">Reception</a></li>
+    <li><a href="http://hookedonus.com/registry">Registry</a></li>
+    <li><a href="http://hookedonus.com/contact">Contact Us</a></li>
+  </ul>
 </div> 
 </body>
 </html>

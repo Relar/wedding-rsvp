@@ -6,7 +6,7 @@ class RsvpController < ApplicationController
     session[:person_id] = nil
     @person = Person.new
     if request.post?
-      @person = Person.where(:is_adult => true).find(:first, :conditions => ["lower(first_name) = ? and lower(last_name) = ?", params[:person][:first_name].downcase.strip, params[:person][:last_name].downcase.strip])
+      @person = Person.where(:is_adult => true, :is_guest => false).find(:first, :conditions => ["lower(first_name) = ? and lower(last_name) = ?", params[:person][:first_name].downcase.strip, params[:person][:last_name].downcase.strip])
       if @person.nil?
         flash[:notice] = "I'm sorry, I can't seem to find your record."
       else
@@ -22,8 +22,9 @@ class RsvpController < ApplicationController
     end 
     if request.post?
       if params[:disclaimer][:agree] == "1"
-        @current_person.family.update_attributes :accepted_disclaimer => true
-         redirect_to :action => :details
+        @current_person.family.accepted_disclaimer = true
+        @current_person.family.save false
+        redirect_to :action => :details
       else
         flash[:notice] = "Please review this information before you continue, it contains important ceremony information."
       end

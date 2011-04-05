@@ -1,8 +1,8 @@
-<h1>RSVP Details</h1>
+<h2>Details</h2>
 
 <% if @family.errors.any? %>
   <div id="error_explanation">
-    <h2>Please fix the following <%= pluralize(@family.errors.count, "error") %> before you continue:</h2>
+    <h3>Please fix the following <%= pluralize(@family.errors.count, "error") %> before you continue:</h3>
     <ul>
     <% @family.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
@@ -13,7 +13,7 @@
 <% end %>
 
 <%= form_for @family, :url => request.path do |f| %>
-  <h2>Your Contact Information</h2>
+  <h3>Your Contact Information</h3>
   <p>Please ensure that we have your correct and complete contact information.</p>
   <div class="input email">
     <%= f.label :email %>
@@ -29,7 +29,7 @@
   </div>
 
   <% unless @family.people.where(:is_guest => true).empty? %>
-    <h2>Guest Information</h2>
+    <h3>Guest Information</h3>
     <p>You may bring up to <%= pluralize @family.people.where(:is_guest => true).count, 'guest' %> - please check those who will be attending with you.</p>
     <ul id="guest_details">
     <%= f.fields_for :people, @family.people.where(:is_guest => true) do |mf| %>
@@ -37,11 +37,11 @@
         <div class="input checkbox">
           <%= mf.check_box :is_guest_attending %>
         </div>
-        <div class="input">
+        <div class="input hint">
           <%= mf.label :first_name %>
           <%= mf.text_field :first_name, :class => 'first_name' %>
         </div>
-        <div class="input">
+        <div class="input hint">
           <%= mf.label :last_name %>
           <%= mf.text_field :last_name, :class => 'last_name' %>
         </div>
@@ -51,7 +51,7 @@
   <% end %>
 
   <% unless @family.people.where(:is_invited_ceremony => true).empty? %>
-    <h2>Wedding Ceremony</h2>
+    <h3>Wedding Ceremony</h3>
     <p>Please indicate the people that will be attending the wedding ceremony.</p>
     <%= f.fields_for :people, @persons do |mf| %>
       <div class="person <% if mf.object.is_guest %>guest<% end %> person-<%= mf.object.id %>">
@@ -61,7 +61,7 @@
     <% end %>
   <% end %>
 
-  <h2>Reception</h2>
+  <h3>Reception</h3>
   <p>Please indicate the people will be attending the reception, and a dinner selection for each person.</p>
   <%= f.fields_for :people, @family.people do |mf| %>
     <div class="person <% if mf.object.is_guest %>guest<% end %> person-<%= mf.object.id %>">
@@ -71,14 +71,12 @@
       </div>
       <div class="input meal select">
         <%= mf.label :meal_id, "Dinner choice" %>
-        <% if mf.object.adult? %>
-          <%= mf.collection_select :meal_id, Meal.where(:is_adult => true), :id, :name, :prompt => true %>
-        <% end %>
+        <%= mf.collection_select :meal_id, mf.object.is_adult? ? Meal.where(:is_adult => true) : Meal.all, :id, :name, :prompt => true %>
       </div>
     </div>
   <% end %>
 
-  <h2>Leave a message</h2>
+  <h3>Leave a message</h3>
   <p>If you have any additional comments, questions, or concerns, leave a message here and we'll be in touch.</p>
   <div class="input message">
     <%= f.text_area :rsvp_message, :rows => 5 %>
@@ -90,7 +88,8 @@
 <% end %>
 
 <style type="text/css">
-  h2 {
+  h3 {
+    margin-top: 1.5em;
     clear: both;
   }
   .input.email, .input.phone, .input.street_address {
@@ -119,8 +118,8 @@
     padding: 0;
     height: 50px;
   }
-  #guest_details .input.checkbox {
-    margin: 5px 0 0 0;
+  #guest_details .input.checkbox input {
+    margin: 10px 0 0 0;
   }
   #guest_details .input {
     float: left;

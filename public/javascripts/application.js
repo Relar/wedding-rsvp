@@ -1,5 +1,11 @@
-Event.observe(window, 'load', function() {
-  window.setTimeout(function() {
-    new Effect.Fade('flash', {duration: 0.5});
-  }, 2000);
+$(function() {
+  //$('#flash').delay(5000).fadeOut();
+});
+
+$('.input.hint input').live('blur', function() {
+  if($(this).val() != '') {
+    $(this).addClass('set');
+  } else {
+    $(this).removeClass('set');
+  }
 });
