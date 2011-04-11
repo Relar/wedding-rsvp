@@ -60,7 +60,7 @@ class Admin::MealsController < ApplicationController
 
     respond_to do |format|
       if @meal.update_attributes(params[:admin_meal])
-        format.html { redirect_to(@meal, :notice => 'Meal was successfully updated.') }
+        format.html { redirect_to(admin_meal_path(@meal), :notice => 'Meal was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
