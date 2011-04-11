@@ -15,4 +15,8 @@ module ApplicationHelper
     admin_family_path family
   end
 
+  def meal_path meal
+    admin_meal_path meal
+  end
+
 end
