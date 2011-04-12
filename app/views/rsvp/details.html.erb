@@ -53,7 +53,7 @@
   <% unless @family.people.where(:is_invited_ceremony => true).empty? %>
     <h3>Wedding Ceremony</h3>
     <p>Please indicate the people that will be attending the wedding ceremony.</p>
-    <%= f.fields_for :people, @persons do |mf| %>
+    <%= f.fields_for :people, @family.people.where(:is_invited_ceremony => true) do |mf| %>
       <div class="person <% if mf.object.is_guest %>guest<% end %> person-<%= mf.object.id %>">
         <%= mf.check_box :is_attending_ceremony %>
         <%= mf.label :is_attending_ceremony, mf.object.name, :class => 'name' %>
@@ -70,7 +70,7 @@
         <%= mf.label :is_attending_reception, mf.object.name, :class => 'name' %>
       </div>
       <div class="input meal select">
-        <%= mf.label :meal_id, "Dinner choice" %>
+        <%= mf.label :meal_id, "Dinner choice: " %>
         <%= mf.collection_select :meal_id, mf.object.is_adult? ? Meal.where(:is_adult => true) : Meal.all, :id, :name, :prompt => true %>
       </div>
     </div>
