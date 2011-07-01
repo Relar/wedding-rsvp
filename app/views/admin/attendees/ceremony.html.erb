@@ -1,0 +1,10 @@
+<h1>Attendees</h1>
+
+<h2>Ceremony</h2>
+
+<ul>
+<% @people.each do |person| %>
+  <li><%= person.name %></li>
+<% end %>
+</ul>
+

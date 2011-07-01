@@ -1,6 +1,9 @@
 <h1>Listing families</h1>
 <%= link_to 'New Family', new_admin_family_path %>
 
+<h2>Confirmed Attending Ceremony: <%= Person.where(:is_attending_ceremony => true).count %></h2>
+<h2>Confirmed Attending Reception: <%= Person.where(:is_attending_reception => true).count %></h2>
+
 <table>
   <tr>
     <th>Name</th>

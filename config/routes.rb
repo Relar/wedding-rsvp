@@ -8,6 +8,10 @@ WeddingRsvp::Application.routes.draw do
     match "logout" => "session#logout", :as => :logout
     resources :families
     resources :meals
+
+    match 'attendees' => 'attendees#index'
+    get 'attendees/ceremony' => 'attendees#ceremony'
+    get 'attendees/reception' => 'attendees#reception'
   end
 
   root :to => "rsvp#index"
