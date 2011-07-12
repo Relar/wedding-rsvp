@@ -5,10 +5,15 @@ class Admin::AttendeesController < ApplicationController
   end
 
   def ceremony
-    @people = Person.where(:is_attending_ceremony => true)
+    @people = Person.order('last_name').where(:is_attending_ceremony => true)
   end
 
   def reception
+    @people = Person.order('last_name').where(:is_attending_reception => true)
+  end
+
+  def meals
     @people = Person.where(:is_attending_reception => true)
+    @meals = Meal.all
   end
 end

@@ -1,0 +1,12 @@
+<h1>Attendees</h1>
+
+<h2>Meal Totals</h2>
+<% @meals.each do |meal| %>
+    <ul>
+      <h3><%= meal.name %>: <%= meal.people.count %></h3>
+      <% meal.people.each do |person| %>
+        <li><%= person.name %></li>
+      <% end %>
+    </ul>
+<% end %>
+

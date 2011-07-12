@@ -4,7 +4,7 @@
 
 <ul>
 <% @people.each do |person| %>
-  <li><%= person.name %></li>
+  <li><%= person.first_name + ' ' + person.last_name %></li>
 <% end %>
 </ul>
 
