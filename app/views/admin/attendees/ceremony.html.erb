@@ -1,7 +1,7 @@
 <h1>Attendees</h1>
 
 <h2>Ceremony</h2>
-
+<h2>Confirmed Attending Ceremony: <%= Person.where(:is_attending_ceremony => true).count %></h2>
 <ul>
 <% @people.each do |person| %>
   <li><%= person.first_name + ' ' + person.last_name %></li>
