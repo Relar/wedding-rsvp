@@ -13,7 +13,8 @@ WeddingRsvp::Application.routes.draw do
     get 'attendees/ceremony' => 'attendees#ceremony'
     get 'attendees/reception' => 'attendees#reception'
     get 'attendees/meals' => 'attendees#meals'
-  end
+    get 'attendees/notattending' => 'attendees#notattending'
+end
 
   root :to => "rsvp#index"
   match 'disclaimer' => 'rsvp#disclaimer'

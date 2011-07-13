@@ -1,7 +1,7 @@
 <h1>Attendees</h1>
 
-<h2>Ceremony</h2>
-<h2>Confirmed Attending Ceremony: <%= @people.count %></h2>
+<h2>Not Attending</h2>
+<h2>Not attending ceremony or reception: <%= @people.count %></h2>
 <ul>
 <% @people.each do |person| %>
   <li><%= person.name.to_str %></li>

@@ -16,4 +16,8 @@ class Admin::AttendeesController < ApplicationController
     @people = Person.where(:is_attending_reception => true)
     @meals = Meal.all
   end
+
+  def notattending
+    @people = Person.order('last_name').where(:is_attending_reception => false, :is_attending_ceremony => false, :is_guest => false)
+  end
 end

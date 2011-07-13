@@ -1,10 +1,10 @@
 <h1>Attendees</h1>
 
 <h2>Reception</h2>
-<h2>Confirmed Attending Reception: <%= Person.where(:is_attending_reception => true).count %></h2>
+<h2>Confirmed Attending Reception: <%= @people.count %></h2>
 <ul>
 <% @people.each do |person| %>
-  <li><%= person.name %></li>
+  <li><%= person.name.to_str %></li>
 <% end %>
 </ul>
 
