@@ -1,10 +1,23 @@
 <h1>Attendees</h1>
 
-<h2>Not Attending</h2>
-<h2>Not attending ceremony or reception: <%= @people.count %></h2>
-<ul>
-<% @people.each do |person| %>
-  <li><%= person.name.to_str %></li>
-<% end %>
+<h2>Not attending ceremony: <%= @notceremony.count %></h2>
+  <ul>
+    <% @notceremony.each do |person| %>
+      <li><%= person.name.to_str %></li>
+    <% end %>
+  </ul>
+
+<h2>Not attending reception: <%= @notreception.count %></h2>
+  <ul>
+    <% @notreception.each do |person| %>
+      <li><%= person.name.to_str %></li>
+    <% end %>
+  </ul>
+
+<h2>Haven't RSVP'd: <%= @peopleunsure.count %></h2>
+  <ul>
+    <% @peopleunsure.each do |person| %>
+      <li><%= person.name.to_str %></li>
+    <% end %>
 </ul>
 
