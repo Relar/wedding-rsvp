@@ -18,10 +18,10 @@ class Admin::AttendeesController < ApplicationController
   end
 
   def notattending
-    @notceremony = Family.where('email is not ""').collect(&:people).flatten.select do |person|
+    @notceremony = Family.where('email != ""').collect(&:people).flatten.select do |person|
       !person.is_guest? and !person.is_attending_ceremony? and person.is_invited_ceremony?
     end
-    @notreception = Family.where('email is not ""').collect(&:people).flatten.select do |person|
+    @notreception = Family.where('email != ""').collect(&:people).flatten.select do |person|
       !person.is_guest? and !person.is_attending_reception?
     end
     @peopleunsure = Family.where(:email => [nil, '']).collect(&:people).flatten.reject(&:is_guest?)
