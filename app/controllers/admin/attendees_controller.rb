@@ -24,6 +24,6 @@ class Admin::AttendeesController < ApplicationController
     @notreception = Family.where(['phone != ?', '']).collect(&:people).flatten.select do |person|
       !person.is_guest? and !person.is_attending_reception?
     end
-    @peopleunsure = Family.where(:email => [nil, '']).collect(&:people).flatten.reject(&:is_guest?)
+    @peopleunsure = Family.where(:phone => [nil, '']).collect(&:people).flatten.reject(&:is_guest?)
   end
 end
